@@ -4,6 +4,7 @@ const dotenv = require('dotenv')
 // eslint-disable-next-line no-unused-vars
 const colors = require('colors')
 const database = require('./config/dbConfig')
+const error = require('./middlewares/errors')
 
 dotenv.config({path: './config/config.env'})
 
@@ -14,6 +15,8 @@ const app = express();
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+
+app.use(error)
 
 const port = process.env.PORT || 5000;
 
