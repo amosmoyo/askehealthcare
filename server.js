@@ -8,6 +8,7 @@ const error = require('./middlewares/errors')
 
 const userRouter = require('./routes/user');
 const authRouter = require('./routes/auth');
+const adminRouter = require('./routes/admin')
 
 dotenv.config({path: './config/config.env'})
 
@@ -22,6 +23,7 @@ app.use(express.urlencoded({extended: true}))
 // routes
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/users/admin', adminRouter);
 
 
 app.use(error)
