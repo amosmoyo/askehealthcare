@@ -1,7 +1,8 @@
+/* eslint-disable no-undef */
 const mongoose = require('mongoose');
 
 const dbConnct = async () => {
-  const conn = await mongoose.connect(process.env.LOCAL_DB, {
+  const conn = await mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     // useCreateIndex: true,
     // useFindAndModify: false,
