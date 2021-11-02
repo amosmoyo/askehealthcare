@@ -2,6 +2,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
+const cors = require('cors')
 // eslint-disable-next-line no-unused-vars
 const colors = require('colors');
 const database = require('./config/dbConfig');
@@ -34,23 +35,25 @@ database();
 
 const app = express();
 
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 // To remove data, use:
 app.use(mongoSanitize());
 
 //  X-XSS-Protection
-app.use(helmet())
+app.use(helmet());
 
 // Prevent cross-site scripting
-app.use(xss())
+app.use(xss());
 
 // compress request to reduce load time
-app.use(compression())
+app.use(compression());
 
 // protect against HTTP Parameter Pollution attacks
-app.use(hpp())
+app.use(hpp());
+
+app.user(cors());
 
 // rate limit
 const limiter = rateLimit({
