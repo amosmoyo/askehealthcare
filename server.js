@@ -1,16 +1,17 @@
 /* eslint-disable no-undef */
-const express = require('express')
-const dotenv = require('dotenv')
+const express = require('express');
+const dotenv = require('dotenv');
+const path = require('path');
 // eslint-disable-next-line no-unused-vars
-const colors = require('colors')
-const database = require('./config/dbConfig')
-const error = require('./middlewares/errors')
+const colors = require('colors');
+const database = require('./config/dbConfig');
+const error = require('./middlewares/errors');
 
 const userRouter = require('./routes/user');
 const authRouter = require('./routes/auth');
-const adminRouter = require('./routes/admin')
+const adminRouter = require('./routes/admin');
 
-dotenv.config({path: './config/config.env'})
+dotenv.config({path: './config/config.env'});
 
 // initialize database connection
 database();
@@ -27,6 +28,10 @@ app.use('/api/v1/users/admin', adminRouter);
 
 
 app.use(error)
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname +'/public/index.html'));
+})
 
 const port = process.env.PORT || 5000;
 
