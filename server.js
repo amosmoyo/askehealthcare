@@ -53,7 +53,7 @@ app.use(compression());
 // protect against HTTP Parameter Pollution attacks
 app.use(hpp());
 
-app.user(cors());
+app.use(cors());
 
 // rate limit
 const limiter = rateLimit({
